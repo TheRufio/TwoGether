@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom"
 import axios from "axios";
+import "../css/authenticate.css";
 
 function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -12,6 +14,9 @@ function UsersPage() {
 
   return (
     <div>
+      <nav>
+        <Link to="/register">Registration</Link>
+      </nav>
       <h1>Users</h1>
       <ul>
         {users.map(u => 

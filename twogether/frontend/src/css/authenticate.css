@@ -1,0 +1,118 @@
+:root {
+    --background: #EA8C55;
+    --background-second: #C75146;
+    --border: #AD2E24;
+    --text: #81171B;
+    --black-text: #540804;
+    --black: #3c0503;
+}
+
+body{
+    margin: 0;
+}
+
+html {
+    background-color: var(--background);
+}
+
+nav {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--black-text);
+    font-weight: bold;
+    font-size: 50px;
+    transition: transform 0.3s ease, color 0.4s ease;
+}
+
+nav a:hover{
+    transform:scale(1.15);
+    color: var(--border)
+}
+
+nav b {
+    color: var(--black-text);
+    font-weight: bold;
+    font-size: 50px;
+    color: var(--border);
+}
+
+.page-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--background);
+}
+
+.main-container {
+    display: flex;
+    flex:1;
+    justify-content:center;
+    align-items: center;
+}
+
+.main-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 40px;
+    border-radius: 20px;
+    min-width: 400px;
+
+    background-color: var(--background-second);
+    border: 2px solid var(--border);
+    color: var(--black-text);
+    font-size: 34px;
+}
+
+.main-container form label {
+    color: var(--text)
+}
+
+.main-container form input {
+    font-size: 30px;
+    background-color: var(--border);
+    border: 2px solid var(--text);
+    color: var(--black);
+    border-radius: 14px;
+    text-align: center;
+    transition: transform 0.4s ease, border-color 0.3s ease;
+}
+
+.main-container form input::placeholder {
+    color: var(--text);
+    text-align:center;
+}
+
+.main-container form input:focus {
+    outline: none;
+    border: 2px solid var(--black-text);
+    transform: scale(1.05)
+}
+
+@media only screen and (max-width: 500px) {
+    .main-container form {
+        min-width: 80vw;
+        padding: 20px;
+    }
+}
+
+.main-container form .buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+footer {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-style: italic;
+}

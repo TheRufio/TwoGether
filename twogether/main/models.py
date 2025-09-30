@@ -38,7 +38,7 @@ class Memory(models.Model):
         ('NONE', 'None')
     ]
     
-    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='memories')
+    album = models.ForeignKey("Album", on_delete=models.CASCADE, related_name='memories')
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='images/%Y/%m/')
     special_day = models.CharField(

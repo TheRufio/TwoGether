@@ -6,14 +6,10 @@ import RegisterPage from "./pages/RegisterPage";
 function App() {
   return (
     <Router>
-      <nav>
-        <Link to="/users">Users</Link> | <Link to="/register">Register</Link>
-      </nav>
-
       <Routes>
         <Route path="/users" element={<UsersPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/" element={<UsersPage />} /> {/* опционально: корень → users */}
+        <Route path="/" element={<UsersPage />} />
       </Routes>
     </Router>
   );
