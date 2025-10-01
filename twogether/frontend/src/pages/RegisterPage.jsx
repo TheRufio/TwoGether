@@ -1,33 +1,30 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import "../css/authenticate.css"
 
 function RegisterPage() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [openPassword, setOpenPassword] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  const handleAddUser = (event) => {
+  const handleAddUser = async (event) => {
     event.preventDefault();
-  
-    if (password1 !== password2){
-      alert("Password do not match");
-      return
-    }
-
-    axios.post("http://127.0.0.1:8000/register/",{
-    username,
-    email,
-    password1,
-    password2
-  })
-  .then(() => {
-    setUsername(""); setEmail(""); setPassword1(""); setPassword2("");
-    alert("User has registered")
-  })
+    try {
+      await axios.post("http://127.0.0.1:8000/register/request/", {
+        username, email, password1, password2
+      });
+      navigate("/register/confirm", { state: { email } }); 
+    } catch (err) {
+      if (err.response?.data){
+        setErrors(err.response.data);
+      } else {
+        setErrors({ non_field_error: [err.message]})
+      }}
   };
 
   const openPasswordField = (event) => {
@@ -38,8 +35,10 @@ function RegisterPage() {
   return (
     <div className="page-container">
       <nav>
+        <b>Registration</b>
+        <i>{'➤'}</i>
         <Link to="/users">Users</Link>
-        <b>Users</b>
+        <i>{'➤'}</i>
         <Link to="/users">Users</Link>
       </nav>
       <div className="main-container">
@@ -60,7 +59,7 @@ function RegisterPage() {
             <input type="button" onClick={openPasswordField} value="👀"/>
             <input type="submit" value="Register"/>
           </div>
-
+          {errors.email && <div className="error">{errors.email[0]}</div>}
         </form>
       </div>
       <footer>

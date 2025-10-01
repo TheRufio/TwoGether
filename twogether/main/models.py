@@ -1,16 +1,27 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 import datetime
+
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+
+class PendingUser(models.Model):
+    username = models.CharField(max_length=150)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=128)
+    code = models.CharField(max_length=8)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class CoupleGroup(models.Model):
     user1 = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='couple_user1'
     )
 
     user2 = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='couple_user2'
     )

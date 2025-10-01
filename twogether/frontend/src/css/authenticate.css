@@ -16,11 +16,20 @@ html {
 }
 
 nav {
-    text-align: center;
-    margin-top: 20px;
+    position: relative;
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+nav .center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 50px;
+    font-weight: bold;
+    color: var(--border);
 }
 
 nav a {
@@ -41,6 +50,13 @@ nav b {
     font-weight: bold;
     font-size: 50px;
     color: var(--border);
+}
+
+nav i {
+    font-weight: bold;
+    font-size: 50px;
+    color: var(--black-text);
+    font-style: normal;
 }
 
 .page-container {
